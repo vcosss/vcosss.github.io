@@ -22,6 +22,23 @@
         var(--B) / 2 - calc(var(--C) / 7)
     ); /* this offset aligns the curves at joints */
     --T: 60deg; /* angle of slanted lines */
+
+    --CONT-H: 100vh; /* height of container */
+    --CONT-W: 100vw; /* width of container */
+
+    /* standard positions */
+    /* --TOP: calc(calc(var(--CONT-H) / -2) - var(--A));
+    --BOTTOM: calc(calc(var(--CONT-H) / 2) + var(--A));
+    --LEFT: calc(calc(var(--CONT-W) / -2) - calc(2.5 * var(--A)));
+    --RIGHT: calc(calc(var(--CONT-W) / 2) + calc(2.5 * var(--A)));
+    --SLANT-OFF: calc(var(--BOTTOM) / (tan(60deg))); */
+    --TOP: calc(-1 * var(--CONT-H));
+    --BOTTOM: var(--CONT-H);
+    --LEFT: calc(-1 * var(--CONT-W));
+    --RIGHT: var(--CONT-W);
+    --SLANT-OFF: calc(var(--BOTTOM) / (tan(60deg)));
+
+    --ANIM-DEFAULTS: 4s ease infinite;
 }
 
 /* GENERAL STYLES */
@@ -43,8 +60,10 @@ body {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: var(--CONT-W);
+    height: var(--CONT-H);
+    overflow: hidden;
+    /* border: 1px solid red; */
 }
 
 .vcos {
@@ -68,40 +87,236 @@ body {
 }
 
 .vcos__v .vcos__lines:nth-child(1) {
-    transform: translate(calc(var(--A) * 0.15), 0) rotate(calc(-1 * var(--T)))
-        scaleX(calc(1 / sin(var(--T))));
-}
-.vcos__v .vcos__lines:nth-child(2) {
     transform: translate(calc(var(--A) * 0.15), 0)
         rotate(calc(180deg + var(--T))) scaleX(calc(1 / sin(var(--T))));
+    animation: vcos_v_1_keys var(--ANIM-DEFAULTS);
+}
+@keyframes vcos_v_1_keys {
+    0% {
+        transform: translate(
+                calc(-1 * var(--SLANT-OFF) + calc(var(--A) * 0.15)),
+                var(--TOP)
+            )
+            rotate(calc(180deg + var(--T))) scaleX(calc(1 / sin(var(--T))));
+    }
+    40%,
+    60% {
+        transform: translate(calc(var(--A) * 0.15), 0)
+            rotate(calc(180deg + var(--T))) scaleX(calc(1 / sin(var(--T))));
+    }
+    100% {
+        transform: translate(
+                calc(var(--SLANT-OFF) + calc(var(--A) * 0.15)),
+                var(--BOTTOM)
+            )
+            rotate(calc(180deg + var(--T))) scaleX(calc(1 / sin(var(--T))));
+    }
+}
+
+.vcos__v .vcos__lines:nth-child(2) {
+    transform: translate(calc(var(--A) * 0.15), 0) rotate(calc(-1 * var(--T)))
+        scaleX(calc(1 / sin(var(--T))));
+    animation: vcos_v_2_keys var(--ANIM-DEFAULTS);
+}
+@keyframes vcos_v_2_keys {
+    0% {
+        transform: translate(
+                calc(var(--SLANT-OFF) + calc(var(--A) * 0.15)),
+                var(--TOP)
+            )
+            rotate(calc(-1 * var(--T))) scaleX(calc(1 / sin(var(--T))));
+    }
+    40%,
+    60% {
+        transform: translate(calc(var(--A) * 0.15), 0)
+            rotate(calc(-1 * var(--T))) scaleX(calc(1 / sin(var(--T))));
+    }
+    100% {
+        transform: translate(
+                calc(-1 * var(--SLANT-OFF) + calc(var(--A) * 0.15)),
+                var(--BOTTOM)
+            )
+            rotate(calc(-1 * var(--T))) scaleX(calc(1 / sin(var(--T))));
+    }
 }
 
 .vcos__c .vcos__lines:nth-child(1) {
-    transform: translate(0, 0) rotate(0) scaleX(0.8);
+    transform: scaleX(0.8);
+    animation: vcos_c_1_keys var(--ANIM-DEFAULTS);
 }
+@keyframes vcos_c_1_keys {
+    0% {
+        transform: translate(var(--RIGHT), 0);
+    }
+    40%,
+    60% {
+        transform: scaleX(0.8);
+    }
+    100% {
+        transform: translate(var(--LEFT), 0);
+    }
+}
+
 .vcos__c .vcos__lines:nth-child(2) {
-    transform: translate(0, 0) rotate(-90deg);
+    transform: rotate(-90deg);
+    animation: vcos_c_2_keys var(--ANIM-DEFAULTS);
 }
+@keyframes vcos_c_2_keys {
+    0% {
+        transform: translate(0, var(--TOP)) rotate(-90deg);
+    }
+    40%,
+    60% {
+        transform: rotate(-90deg);
+    }
+    100% {
+        transform: translate(0, var(--BOTTOM)) rotate(-90deg);
+    }
+}
+
 .vcos__c .vcos__lines:nth-child(3) {
     transform: translate(0, calc(calc(-1 * var(--A)) + calc(var(--D) * 2)))
-        rotate(0) scaleX(0.8);
+        scaleX(0.8);
+    animation: vcos_c_3_keys var(--ANIM-DEFAULTS);
+}
+@keyframes vcos_c_3_keys {
+    0% {
+        transform: translate(
+                var(--LEFT),
+                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+            )
+            scaleX(0.8);
+    }
+    40%,
+    60% {
+        transform: translate(0, calc(calc(-1 * var(--A)) + calc(var(--D) * 2)))
+            scaleX(0.8);
+    }
+    100% {
+        transform: translate(
+                var(--RIGHT),
+                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+            )
+            scaleX(0.8);
+    }
 }
 
 .vcos__o .vcos__lines:nth-child(1) {
-    transform: translate(0, 0) rotate(0) scale(1);
+    transform: scale(1);
+    animation: vcos_o_1_keys var(--ANIM-DEFAULTS);
 }
+@keyframes vcos_o_1_keys {
+    0% {
+        transform: translate(var(--RIGHT), 0) scale(1);
+    }
+    40%,
+    60% {
+        transform: scale(1);
+    }
+    100% {
+        transform: translate(var(--LEFT), 0) scale(1);
+    }
+}
+
 .vcos__o .vcos__lines:nth-child(2) {
-    transform: translate(0, 0) rotate(-90deg);
+    transform: rotate(-90deg);
+    animation: vcos_o_2_keys var(--ANIM-DEFAULTS);
 }
+@keyframes vcos_o_2_keys {
+    0% {
+        transform: translate(0, var(--BOTTOM)) rotate(-90deg);
+    }
+    40%,
+    60% {
+        transform: rotate(-90deg);
+    }
+    100% {
+        transform: translate(0, var(--TOP)) rotate(-90deg);
+    }
+}
+
 .vcos__o .vcos__lines:nth-child(3) {
-    transform: translate(0, calc(calc(-1 * var(--A)) + calc(var(--D) * 2)))
-        rotate(0) scale(1);
+    transform: translate(0, calc(calc(-1 * var(--A)) + calc(var(--D) * 2)));
+    animation: vcos_o_3_keys var(--ANIM-DEFAULTS);
 }
+@keyframes vcos_o_3_keys {
+    0% {
+        transform: translate(
+            var(--LEFT),
+            calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+        );
+    }
+    40%,
+    60% {
+        transform: translate(0, calc(calc(-1 * var(--A)) + calc(var(--D) * 2)));
+    }
+    100% {
+        transform: translate(
+            var(--RIGHT),
+            calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+        );
+    }
+}
+
 .vcos__o .vcos__lines:nth-child(4) {
     transform: translate(calc(var(--A) - calc(var(--D) * 2)), 0) rotate(-90deg);
+    animation: vcos_o_4_keys var(--ANIM-DEFAULTS);
+}
+@keyframes vcos_o_4_keys {
+    0% {
+        transform: translate(calc(var(--A) - calc(var(--D) * 2)), var(--TOP))
+            rotate(-90deg);
+    }
+    40%,
+    60% {
+        transform: translate(calc(var(--A) - calc(var(--D) * 2)), 0)
+            rotate(-90deg);
+    }
+    100% {
+        transform: translate(calc(var(--A) - calc(var(--D) * 2)), var(--BOTTOM))
+            rotate(-90deg);
+    }
 }
 
 .vcos__s .vcos__lines:nth-child(1) {
+    transform-origin: calc(var(--A) - var(--D));
+    transform: scaleX(0.8);
+    animation: vcos_s_1_keys var(--ANIM-DEFAULTS);
+}
+@keyframes vcos_s_1_keys {
+    0% {
+        transform: translate(var(--LEFT), 0) scaleX(0.8);
+    }
+    40%,
+    60% {
+        transform: scaleX(0.8);
+    }
+    100% {
+        transform: translate(var(--RIGHT), 0) scaleX(0.8);
+    }
+}
+
+.vcos__s .vcos__lines:nth-child(2) {
+    transform-origin: calc(var(--A) - var(--D));
+    transform: rotate(var(--T)) scaleX(calc(1 / sin(var(--T))));
+    animation: vcos_s_2_keys var(--ANIM-DEFAULTS);
+}
+@keyframes vcos_s_2_keys {
+    0% {
+        transform: translate(calc(-1 * var(--SLANT-OFF)), var(--TOP))
+            rotate(var(--T)) scaleX(calc(1 / sin(var(--T))));
+    }
+    40%,
+    60% {
+        transform: rotate(var(--T)) scaleX(calc(1 / sin(var(--T))));
+    }
+    100% {
+        transform: translate(var(--SLANT-OFF), var(--BOTTOM)) rotate(var(--T))
+            scaleX(calc(1 / sin(var(--T))));
+    }
+}
+
+.vcos__s .vcos__lines:nth-child(3) {
     transform: translate(
             calc(
                 var(--A) - calc(var(--A) * cos(var(--T)) / sin(var(--T))) -
@@ -109,13 +324,33 @@ body {
             ),
             calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
         )
-        rotate(0) scaleX(0.8);
+        scaleX(0.8);
+    animation: vcos_s_3_keys var(--ANIM-DEFAULTS);
 }
-.vcos__s .vcos__lines:nth-child(2) {
-    transform-origin: calc(var(--A) - var(--D));
-    transform: translate(0, 0) rotate(0) scaleX(0.8);
-}
-.vcos__s .vcos__lines:nth-child(3) {
-    transform-origin: calc(var(--A) - var(--D));
-    transform: translate(0, 0) rotate(var(--T)) scaleX(calc(1 / sin(var(--T))));
+@keyframes vcos_s_3_keys {
+    0% {
+        transform: translate(
+                var(--RIGHT),
+                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+            )
+            scaleX(0.8);
+    }
+    40%,
+    60% {
+        transform: translate(
+                calc(
+                    var(--A) - calc(var(--A) * cos(var(--T)) / sin(var(--T))) -
+                        var(--D)
+                ),
+                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+            )
+            scaleX(0.8);
+    }
+    100% {
+        transform: translate(
+                var(--LEFT),
+                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+            )
+            scaleX(0.8);
+    }
 }
