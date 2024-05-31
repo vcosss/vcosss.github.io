@@ -75,7 +75,10 @@ body {
     align-items: center;
     width: calc(10 / 3 * var(--A));
     height: var(--A);
-    transform: translate(calc(-0.5 * var(--A)), calc(0.5 * var(--A)));
+    transform: translate(
+        calc(-0.5 * var(--A)),
+        calc(0.5 * var(--A) - var(--D))
+    );
 }
 
 .vcos__lines {
