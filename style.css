@@ -15,8 +15,8 @@
     --VCOS-COLOR: whitesmoke;
 
     /* VCOS ANIMATION */
-    --A: 150px; /* length of lines */
-    --B: 20px; /* width of lines */
+    --A: 7.813vw; /* length of lines */
+    --B: 1.042vw; /* width of lines */
     --C: calc(var(--B) / 2); /* border-radius of lines */
     --D: calc(
         var(--B) / 2 - calc(var(--C) / 7)
@@ -33,12 +33,12 @@
     --RIGHT: calc(calc(var(--CONT-W) / 2) + calc(2.5 * var(--A)));
     --SLANT-OFF: calc(var(--BOTTOM) / (tan(60deg))); */
     --TOP: calc(-1 * var(--CONT-H));
-    --BOTTOM: var(--CONT-H);
+    --BOTTOM: calc(1 * var(--CONT-H));
     --LEFT: calc(-1 * var(--CONT-W));
-    --RIGHT: var(--CONT-W);
+    --RIGHT: calc(1 * var(--CONT-W));
     --SLANT-OFF: calc(var(--BOTTOM) / (tan(60deg)));
 
-    --ANIM-DEFAULTS: 10s ease infinite;
+    --ANIM-DEFAULTS: 6s ease infinite;
 }
 
 /* GENERAL STYLES */
@@ -63,7 +63,6 @@ body {
     width: var(--CONT-W);
     height: var(--CONT-H);
     overflow: hidden;
-    /* border: 1px solid red; */
 }
 
 .vcos {
@@ -84,6 +83,7 @@ body {
     transform-origin: var(--D);
     position: absolute;
     z-index: -1;
+    /* box-shadow: rgba(72, 135, 202, 0.8) 0 0 90px 33px; */
 }
 
 .vcos__v .vcos__lines:nth-child(1) {
@@ -153,7 +153,7 @@ body {
         transform: scaleX(0.8);
     }
     100% {
-        transform: translate(var(--LEFT), 0);
+        transform: translate(calc(3 * var(--LEFT)), 0);
     }
 }
 
@@ -182,7 +182,7 @@ body {
 @keyframes vcos_c_3_keys {
     0% {
         transform: translate(
-                var(--LEFT),
+                calc(3 * var(--LEFT)),
                 calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
             )
             scaleX(0.8);
@@ -207,14 +207,14 @@ body {
 }
 @keyframes vcos_o_1_keys {
     0% {
-        transform: translate(var(--RIGHT), 0) scale(1);
+        transform: translate(calc(2 * var(--RIGHT)), 0) scale(1);
     }
     40%,
     60% {
         transform: scale(1);
     }
     100% {
-        transform: translate(var(--LEFT), 0) scale(1);
+        transform: translate(calc(2 * var(--LEFT)), 0) scale(1);
     }
 }
 
@@ -242,7 +242,7 @@ body {
 @keyframes vcos_o_3_keys {
     0% {
         transform: translate(
-            var(--LEFT),
+            calc(2 * var(--LEFT)),
             calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
         );
     }
@@ -252,7 +252,7 @@ body {
     }
     100% {
         transform: translate(
-            var(--RIGHT),
+            calc(2 * var(--RIGHT)),
             calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
         );
     }
@@ -285,7 +285,7 @@ body {
 }
 @keyframes vcos_s_1_keys {
     0% {
-        transform: translate(var(--RIGHT), 0) scaleX(0.8);
+        transform: translate(calc(3 * var(--RIGHT)), 0) scaleX(0.8);
     }
     40%,
     60% {
@@ -348,7 +348,7 @@ body {
     }
     100% {
         transform: translate(
-                var(--RIGHT),
+                calc(3 * var(--RIGHT)),
                 calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
             )
             scaleX(0.8);
