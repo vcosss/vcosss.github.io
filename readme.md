@@ -4,3 +4,4 @@
 -   [x] flow direction
 -   [ ] decoration
 -   [ ] scaling of lines
+-   [ ] responsive design
