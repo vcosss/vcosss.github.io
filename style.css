@@ -15,8 +15,8 @@
     --VCOS-COLOR: whitesmoke;
 
     /* VCOS ANIMATION */
-    --A: 60px; /* length of lines */
-    --B: 10px; /* width of lines */
+    --A: 150px; /* length of lines */
+    --B: 20px; /* width of lines */
     --C: calc(var(--B) / 2); /* border-radius of lines */
     --D: calc(
         var(--B) / 2 - calc(var(--C) / 7)
@@ -38,7 +38,7 @@
     --RIGHT: var(--CONT-W);
     --SLANT-OFF: calc(var(--BOTTOM) / (tan(60deg)));
 
-    --ANIM-DEFAULTS: 4s ease infinite;
+    --ANIM-DEFAULTS: 10s ease infinite;
 }
 
 /* GENERAL STYLES */
@@ -121,8 +121,8 @@ body {
 @keyframes vcos_v_2_keys {
     0% {
         transform: translate(
-                calc(var(--SLANT-OFF) + calc(var(--A) * 0.15)),
-                var(--TOP)
+                calc(-1 * var(--SLANT-OFF) + calc(var(--A) * 0.15)),
+                var(--BOTTOM)
             )
             rotate(calc(-1 * var(--T))) scaleX(calc(1 / sin(var(--T))));
     }
@@ -133,8 +133,8 @@ body {
     }
     100% {
         transform: translate(
-                calc(-1 * var(--SLANT-OFF) + calc(var(--A) * 0.15)),
-                var(--BOTTOM)
+                calc(var(--SLANT-OFF) + calc(var(--A) * 0.15)),
+                var(--TOP)
             )
             rotate(calc(-1 * var(--T))) scaleX(calc(1 / sin(var(--T))));
     }
@@ -146,14 +146,14 @@ body {
 }
 @keyframes vcos_c_1_keys {
     0% {
-        transform: translate(var(--RIGHT), 0);
+        transform: translate(var(--LEFT), 0);
     }
     40%,
     60% {
         transform: scaleX(0.8);
     }
     100% {
-        transform: translate(var(--LEFT), 0);
+        transform: translate(var(--RIGHT), 0);
     }
 }
 
@@ -163,14 +163,14 @@ body {
 }
 @keyframes vcos_c_2_keys {
     0% {
-        transform: translate(0, var(--TOP)) rotate(-90deg);
+        transform: translate(0, var(--BOTTOM)) rotate(-90deg);
     }
     40%,
     60% {
         transform: rotate(-90deg);
     }
     100% {
-        transform: translate(0, var(--BOTTOM)) rotate(-90deg);
+        transform: translate(0, var(--TOP)) rotate(-90deg);
     }
 }
 
@@ -182,7 +182,7 @@ body {
 @keyframes vcos_c_3_keys {
     0% {
         transform: translate(
-                var(--LEFT),
+                var(--RIGHT),
                 calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
             )
             scaleX(0.8);
@@ -194,7 +194,7 @@ body {
     }
     100% {
         transform: translate(
-                var(--RIGHT),
+                var(--LEFT),
                 calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
             )
             scaleX(0.8);
@@ -207,14 +207,14 @@ body {
 }
 @keyframes vcos_o_1_keys {
     0% {
-        transform: translate(var(--RIGHT), 0) scale(1);
+        transform: translate(var(--LEFT), 0) scale(1);
     }
     40%,
     60% {
         transform: scale(1);
     }
     100% {
-        transform: translate(var(--LEFT), 0) scale(1);
+        transform: translate(var(--RIGHT), 0) scale(1);
     }
 }
 
@@ -224,14 +224,14 @@ body {
 }
 @keyframes vcos_o_2_keys {
     0% {
-        transform: translate(0, var(--BOTTOM)) rotate(-90deg);
+        transform: translate(0, var(--TOP)) rotate(-90deg);
     }
     40%,
     60% {
         transform: rotate(-90deg);
     }
     100% {
-        transform: translate(0, var(--TOP)) rotate(-90deg);
+        transform: translate(0, var(--BOTTOM)) rotate(-90deg);
     }
 }
 
@@ -242,7 +242,7 @@ body {
 @keyframes vcos_o_3_keys {
     0% {
         transform: translate(
-            var(--LEFT),
+            var(--RIGHT),
             calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
         );
     }
@@ -252,7 +252,7 @@ body {
     }
     100% {
         transform: translate(
-            var(--RIGHT),
+            var(--LEFT),
             calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
         );
     }
@@ -264,7 +264,7 @@ body {
 }
 @keyframes vcos_o_4_keys {
     0% {
-        transform: translate(calc(var(--A) - calc(var(--D) * 2)), var(--TOP))
+        transform: translate(calc(var(--A) - calc(var(--D) * 2)), var(--BOTTOM))
             rotate(-90deg);
     }
     40%,
@@ -273,7 +273,7 @@ body {
             rotate(-90deg);
     }
     100% {
-        transform: translate(calc(var(--A) - calc(var(--D) * 2)), var(--BOTTOM))
+        transform: translate(calc(var(--A) - calc(var(--D) * 2)), var(--TOP))
             rotate(-90deg);
     }
 }
