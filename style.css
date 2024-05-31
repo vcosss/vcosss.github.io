@@ -15,8 +15,8 @@
     --VCOS-COLOR: whitesmoke;
 
     /* VCOS ANIMATION */
-    --A: 7.813vw; /* length of lines */
-    --B: 1.042vw; /* width of lines */
+    --A: 15vw; /* length of lines og150px*/
+    --B: 3vw; /* width of lines og20px*/
     --C: calc(var(--B) / 2); /* border-radius of lines */
     --D: calc(
         var(--B) / 2 - calc(var(--C) / 7)
@@ -38,7 +38,10 @@
     --RIGHT: calc(1 * var(--CONT-W));
     --SLANT-OFF: calc(var(--BOTTOM) / (tan(60deg)));
 
-    --ANIM-DEFAULTS: 6s ease infinite;
+    --SLOW-H-OFF: calc(0.2 * var(--A));
+    --SLOW-V-OFF: calc(0.2 * var(--A));
+
+    --ANIM-DEFAULTS: 4s linear infinite;
 }
 
 /* GENERAL STYLES */
@@ -99,9 +102,18 @@ body {
             )
             rotate(calc(180deg + var(--T))) scaleX(calc(1 / sin(var(--T))));
     }
-    40%,
-    60% {
-        transform: translate(calc(var(--A) * 0.15), 0)
+    30% {
+        transform: translate(
+                calc(var(--SLOW-V-OFF) / (tan(60deg)) + var(--A) * 0.15),
+                calc(1 * var(--SLOW-V-OFF))
+            )
+            rotate(calc(180deg + var(--T))) scaleX(calc(1 / sin(var(--T))));
+    }
+    70% {
+        transform: translate(
+                calc(-1 * var(--SLOW-V-OFF) / (tan(60deg)) + var(--A) * 0.15),
+                calc(-1 * var(--SLOW-V-OFF))
+            )
             rotate(calc(180deg + var(--T))) scaleX(calc(1 / sin(var(--T))));
     }
     100% {
@@ -126,9 +138,18 @@ body {
             )
             rotate(calc(-1 * var(--T))) scaleX(calc(1 / sin(var(--T))));
     }
-    40%,
-    60% {
-        transform: translate(calc(var(--A) * 0.15), 0)
+    30% {
+        transform: translate(
+                calc(var(--SLOW-V-OFF) / tan(60deg) + var(--A) * 0.15),
+                calc(-1 * var(--SLOW-V-OFF))
+            )
+            rotate(calc(-1 * var(--T))) scaleX(calc(1 / sin(var(--T))));
+    }
+    70% {
+        transform: translate(
+                calc(-1 * var(--SLOW-V-OFF) / tan(60deg) + var(--A) * 0.15),
+                calc(1 * var(--SLOW-V-OFF))
+            )
             rotate(calc(-1 * var(--T))) scaleX(calc(1 / sin(var(--T))));
     }
     100% {
@@ -148,9 +169,11 @@ body {
     0% {
         transform: translate(var(--RIGHT), 0);
     }
-    40%,
-    60% {
-        transform: scaleX(0.8);
+    30% {
+        transform: translate(calc(1 * var(--SLOW-H-OFF)), 0) scaleX(0.8);
+    }
+    70% {
+        transform: translate(calc(-1 * var(--SLOW-H-OFF)), 0) scaleX(0.8);
     }
     100% {
         transform: translate(calc(2 * var(--LEFT)), 0);
@@ -165,9 +188,11 @@ body {
     0% {
         transform: translate(0, var(--BOTTOM)) rotate(-90deg);
     }
-    40%,
-    60% {
-        transform: rotate(-90deg);
+    30% {
+        transform: translate(0, calc(1 * var(--SLOW-V-OFF))) rotate(-90deg);
+    }
+    70% {
+        transform: translate(0, calc(-1 * var(--SLOW-V-OFF))) rotate(-90deg);
     }
     100% {
         transform: translate(0, var(--TOP)) rotate(-90deg);
@@ -187,9 +212,18 @@ body {
             )
             scaleX(0.8);
     }
-    40%,
-    60% {
-        transform: translate(0, calc(calc(-1 * var(--A)) + calc(var(--D) * 2)))
+    30% {
+        transform: translate(
+                calc(-1 * var(--SLOW-H-OFF)),
+                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+            )
+            scaleX(0.8);
+    }
+    70% {
+        transform: translate(
+                calc(1 * var(--SLOW-H-OFF)),
+                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+            )
             scaleX(0.8);
     }
     100% {
@@ -209,9 +243,11 @@ body {
     0% {
         transform: translate(calc(1.5 * var(--RIGHT)), 0) scale(1);
     }
-    40%,
-    60% {
-        transform: scale(1);
+    30% {
+        transform: translate(calc(1 * var(--SLOW-H-OFF)), 0);
+    }
+    70% {
+        transform: translate(calc(-1 * var(--SLOW-H-OFF)), 0);
     }
     100% {
         transform: translate(calc(1.5 * var(--LEFT)), 0) scale(1);
@@ -226,9 +262,11 @@ body {
     0% {
         transform: translate(0, var(--TOP)) rotate(-90deg);
     }
-    40%,
-    60% {
-        transform: rotate(-90deg);
+    30% {
+        transform: translate(0, calc(-1 * var(--SLOW-V-OFF))) rotate(-90deg);
+    }
+    70% {
+        transform: translate(0, calc(1 * var(--SLOW-V-OFF))) rotate(-90deg);
     }
     100% {
         transform: translate(0, var(--BOTTOM)) rotate(-90deg);
@@ -246,9 +284,17 @@ body {
             calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
         );
     }
-    40%,
-    60% {
-        transform: translate(0, calc(calc(-1 * var(--A)) + calc(var(--D) * 2)));
+    30% {
+        transform: translate(
+            calc(-1 * var(--SLOW-H-OFF)),
+            calc(-1 * var(--A) + 2 * var(--D))
+        );
+    }
+    70% {
+        transform: translate(
+            calc(1 * var(--SLOW-H-OFF)),
+            calc(-1 * var(--A) + 2 * var(--D))
+        );
     }
     100% {
         transform: translate(
@@ -267,9 +313,18 @@ body {
         transform: translate(calc(var(--A) - calc(var(--D) * 2)), var(--BOTTOM))
             rotate(-90deg);
     }
-    40%,
-    60% {
-        transform: translate(calc(var(--A) - calc(var(--D) * 2)), 0)
+    30% {
+        transform: translate(
+                calc(var(--A) - calc(var(--D) * 2)),
+                calc(1 * var(--SLOW-V-OFF))
+            )
+            rotate(-90deg);
+    }
+    70% {
+        transform: translate(
+                calc(var(--A) - calc(var(--D) * 2)),
+                calc(-1 * var(--SLOW-V-OFF))
+            )
             rotate(-90deg);
     }
     100% {
@@ -287,9 +342,11 @@ body {
     0% {
         transform: translate(calc(2 * var(--RIGHT)), 0) scaleX(0.8);
     }
-    40%,
-    60% {
-        transform: scaleX(0.8);
+    30% {
+        transform: translate(calc(1 * var(--SLOW-H-OFF))) scaleX(0.8);
+    }
+    70% {
+        transform: translate(calc(-1 * var(--SLOW-H-OFF))) scaleX(0.8);
     }
     100% {
         transform: translate(var(--LEFT), 0) scaleX(0.8);
@@ -306,9 +363,19 @@ body {
         transform: translate(calc(-1 * var(--SLANT-OFF)), var(--TOP))
             rotate(var(--T)) scaleX(calc(1 / sin(var(--T))));
     }
-    40%,
-    60% {
-        transform: rotate(var(--T)) scaleX(calc(1 / sin(var(--T))));
+    30% {
+        transform: translate(
+                calc(-1 * var(--SLOW-V-OFF) / tan(60deg)),
+                calc(-1 * var(--SLOW-V-OFF))
+            )
+            rotate(var(--T)) scaleX(calc(1 / sin(var(--T))));
+    }
+    70% {
+        transform: translate(
+                calc(var(--SLOW-V-OFF) / tan(60deg)),
+                calc(var(--SLOW-V-OFF))
+            )
+            rotate(var(--T)) scaleX(calc(1 / sin(var(--T))));
     }
     100% {
         transform: translate(var(--SLANT-OFF), var(--BOTTOM)) rotate(var(--T))
@@ -322,34 +389,40 @@ body {
                 var(--A) - calc(var(--A) * cos(var(--T)) / sin(var(--T))) -
                     var(--D)
             ),
-            calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+            calc(-1 * var(--A) + 2 * var(--D))
         )
         scaleX(0.8);
     animation: vcos_s_3_keys var(--ANIM-DEFAULTS);
 }
 @keyframes vcos_s_3_keys {
     0% {
+        transform: translate(var(--LEFT), calc(-1 * var(--A) + 2 * var(--D)))
+            scaleX(0.8);
+    }
+    30% {
         transform: translate(
-                var(--LEFT),
-                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+                calc(
+                    var(--A) - var(--A) * cos(var(--T)) / sin(var(--T)) -
+                        var(--D) + calc(-1 * var(--SLOW-H-OFF))
+                ),
+                calc(-1 * var(--A) + 2 * var(--D))
             )
             scaleX(0.8);
     }
-    40%,
-    60% {
+    70% {
         transform: translate(
                 calc(
-                    var(--A) - calc(var(--A) * cos(var(--T)) / sin(var(--T))) -
-                        var(--D)
+                    var(--A) - var(--A) * cos(var(--T)) / sin(var(--T)) -
+                        var(--D) + calc(+1 * var(--SLOW-H-OFF))
                 ),
-                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+                calc(-1 * var(--A) + 2 * var(--D))
             )
             scaleX(0.8);
     }
     100% {
         transform: translate(
                 calc(2 * var(--RIGHT)),
-                calc(calc(-1 * var(--A)) + calc(var(--D) * 2))
+                calc(-1 * var(--A) + 2 * var(--D))
             )
             scaleX(0.8);
     }
