@@ -41,7 +41,7 @@
     --SLOW-H-OFF: calc(0.2 * var(--A));
     --SLOW-V-OFF: calc(0.2 * var(--A));
 
-    --ANIM-DEFAULTS: 4s linear infinite;
+    --ANIM-DEFAULTS: 0s linear;
 }
 
 /* GENERAL STYLES */
@@ -89,7 +89,7 @@ body {
     transform-origin: var(--D);
     position: absolute;
     z-index: -1;
-    /* box-shadow: rgba(72, 135, 202, 0.8) 0 0 90px 33px; */
+    box-shadow: rgba(72, 135, 202, 0.8) 0 0 4.688vw 1.719vw; /* 90px 33px */
 }
 
 .vcos__v .vcos__lines:nth-child(1) {
